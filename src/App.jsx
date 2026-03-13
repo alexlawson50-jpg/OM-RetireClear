@@ -295,7 +295,7 @@ function calculateIncomeTax(grossIncome) {
       rate: 0,
       amount: Math.round(Math.min(grossIncome, personalAllowance)),
       tax: 0,
-      color: C.green,
+      color: "#7de2a8",  // light green — tax-free band
     });
   }
   if (basicRateAmount > 0) {
@@ -304,7 +304,7 @@ function calculateIncomeTax(grossIncome) {
       rate: T.basicRate,
       amount: Math.round(basicRateAmount),
       tax: Math.round(basicRateTax),
-      color: C.cyan,
+      color: C.blue,     // jean blue — basic rate
     });
   }
   if (higherRateAmount > 0) {
@@ -313,7 +313,7 @@ function calculateIncomeTax(grossIncome) {
       rate: T.higherRate,
       amount: Math.round(higherRateAmount),
       tax: Math.round(higherRateTax),
-      color: C.amber,
+      color: C.amber,    // warm orange — higher rate
     });
   }
   if (additionalRateAmount > 0) {
@@ -322,7 +322,7 @@ function calculateIncomeTax(grossIncome) {
       rate: T.additionalRate,
       amount: Math.round(additionalRateAmount),
       tax: Math.round(additionalRateTax),
-      color: C.red,
+      color: C.red,      // red — additional rate
     });
   }
 
