@@ -1715,26 +1715,37 @@ function TaxBreakdownPanel({ preSPTax, postSPTax, isaIncome, statePensionAnnual,
           </div>
         )}
 
-        {/* Summary line */}
+        {/* Summary line — four key figures */}
         <div style={{
           padding: "16px 18px", background: C.bg, borderRadius: 12,
           border: `1px solid ${C.border}`,
-          display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12,
+          display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: 16,
         }}>
           <div>
-            <div style={{ fontSize: 13, color: C.textSoft }}>Total Tax</div>
-            <div style={{ fontSize: 24, fontWeight: 700, color: C.red }}>
-              {formatCurrency(totalTaxBurden)}
-              {cgtResult.tax > 0 && <span style={{ fontSize: 12, fontWeight: 400, color: C.textDim }}> (inc. {formatCurrency(cgtResult.tax)} CGT)</span>}
+            <div style={{ fontSize: 11, color: C.textDim, textTransform: "uppercase", letterSpacing: "0.06em", fontWeight: 600, marginBottom: 6 }}>Income Tax</div>
+            <div style={{ fontSize: 22, fontWeight: 700, color: C.red }}>
+              −{formatCurrency(tax.totalTax)}
             </div>
+            {cgtResult.tax > 0 && <div style={{ fontSize: 11, color: C.textDim, marginTop: 4 }}>+ {formatCurrency(cgtResult.tax)} CGT</div>}
           </div>
-          <div style={{ textAlign: "right" }}>
-            <div style={{ fontSize: 13, color: C.textSoft }}>Effective Rate</div>
-            <div style={{ fontSize: 24, fontWeight: 700, color: C.text }}>
+          <div>
+            <div style={{ fontSize: 11, color: C.textDim, textTransform: "uppercase", letterSpacing: "0.06em", fontWeight: 600, marginBottom: 6 }}>Effective Rate</div>
+            <div style={{ fontSize: 22, fontWeight: 700, color: C.text }}>
               {(tax.effectiveRate * 100).toFixed(1)}%
             </div>
-            <div style={{ fontSize: 12, color: C.textDim }}>
-              marginal: {(tax.marginalRate * 100).toFixed(0)}%
+          </div>
+          <div>
+            <div style={{ fontSize: 11, color: C.textDim, textTransform: "uppercase", letterSpacing: "0.06em", fontWeight: 600, marginBottom: 6 }}>
+              Marginal Rate <Tip text="The tax rate you'd pay on the next £1 of income. In the £100k–£125,140 band this can be 60% due to the Personal Allowance taper." />
+            </div>
+            <div style={{ fontSize: 22, fontWeight: 700, color: C.text }}>
+              {(tax.marginalRate * 100).toFixed(0)}%
+            </div>
+          </div>
+          <div>
+            <div style={{ fontSize: 11, color: C.textDim, textTransform: "uppercase", letterSpacing: "0.06em", fontWeight: 600, marginBottom: 6 }}>Net Income</div>
+            <div style={{ fontSize: 22, fontWeight: 700, color: C.green }}>
+              {formatCurrency(tax.netIncome + (isaIncome || 0) + (currentGiaDrawdown - cgtResult.tax))}
             </div>
           </div>
         </div>
