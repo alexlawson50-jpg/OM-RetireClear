@@ -2544,7 +2544,7 @@ export default function RetirePlanner() {
       <div style={{ maxWidth: 780, margin: "0 auto", padding: "0 24px", position: "relative", zIndex: 1 }}>
 
         {/* ═══════ HERO ═══════ */}
-        <div style={{ paddingTop: 175, paddingBottom: 24, position: "relative" }}>
+        <div style={{ paddingTop: 175, paddingBottom: 0, position: "relative" }}>
           {/* Paper circle — peeking from top right behind hero */}
           <Reveal direction="left">
             <SectionLabel text="UK Retirement Planner" />
@@ -2718,7 +2718,7 @@ export default function RetirePlanner() {
         )}
 
         {/* ═══════ SECTION 0: MY GOAL ═══════ */}
-        <Divider  />
+        <Divider />
           <Reveal>
           <SectionLabel text="Your Goal" />
           <h2 style={{ fontSize: 28, fontWeight: 900, margin: "12px 0 8px", letterSpacing: "-0.02em" }}>
