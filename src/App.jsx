@@ -1696,7 +1696,7 @@ function TaxBreakdownPanel({ preSPTax, postSPTax, isaIncome, statePensionAnnual,
               {tax.bands.map((band, i) => (
                 <div key={i} style={{
                   width: `${(band.amount / totalForBar) * 100}%`, height: "100%",
-                  background: band.color, opacity: 0.7,
+                  background: band.color,
                   minWidth: band.amount > 0 ? 2 : 0,
                   transition: "width 0.5s ease",
                 }} title={`${band.name}: ${formatCurrency(band.amount)} @ ${(band.rate * 100).toFixed(0)}% = ${formatCurrency(band.tax)} tax`} />
@@ -1705,8 +1705,8 @@ function TaxBreakdownPanel({ preSPTax, postSPTax, isaIncome, statePensionAnnual,
             <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 10 }}>
               {tax.bands.map((band, i) => (
                 <div key={i} style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12 }}>
-                  <div style={{ width: 10, height: 10, borderRadius: 3, background: band.color, opacity: 0.7 }} />
-                  <span style={{ color: C.textSoft }}>
+                  <div style={{ width: 10, height: 10, borderRadius: 3, background: band.color }} />
+                  <span style={{ color: C.text }}>
                     {band.name} ({(band.rate * 100).toFixed(0)}%): {formatCurrency(band.amount)} → {formatCurrency(band.tax)} tax
                   </span>
                 </div>
