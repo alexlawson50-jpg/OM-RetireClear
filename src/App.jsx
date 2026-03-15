@@ -4047,11 +4047,11 @@ export default function RetirePlanner() {
                 {/* Legend — ordered by tax efficiency (matches bar stack, bottom to top) */}
                 <div style={{ display: "flex", gap: 16, marginBottom: 16, marginTop: 16, flexWrap: "wrap" }}>
                   {[
-                    { c: C.violet, l: "ISA (tax-free)" },
-                    { c: C.cyan, l: "DC Pension" },
-                    { c: C.blue, l: "State Pension" },
-                    ...((giaResult.annualDrawdown > 0) ? [{ c: "#f59e0b", l: "GIA (CGT)" }] : []),
-                    ...(chartMode === "gross" ? [{ c: C.red, l: "Tax" }] : []),
+                    { c: C.chartYellow, l: "ISA (tax-free)" },
+                    { c: C.chartCoral, l: "DC Pension" },
+                    { c: C.chartBlue, l: "State Pension" },
+                    ...((giaResult.annualDrawdown > 0) ? [{ c: C.chartAmber, l: "GIA (CGT)" }] : []),
+                    ...(chartMode === "gross" ? [{ c: C.chartRed, l: "Tax" }] : []),
                   ].map(({ c, l }) => (
                     <div key={l} style={{ display: "flex", alignItems: "center", gap: 6 }}>
                       <div style={{
