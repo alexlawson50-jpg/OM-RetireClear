@@ -1362,7 +1362,7 @@ function PaperCircle({ size = 200, top, bottom, left, right, opacity = 0.55, col
 /* ─── Tab component — rounded pill style ─── */
 function TabBar({ activeTab, onTabChange }) {
   const tabs = [
-    { id: "plan", label: "My Plan", icon: "01", available: true },
+    { id: "plan", label: "My Details", icon: "01", available: true },
     { id: "trajectory", label: "My Trajectory", icon: "02", available: true },
     { id: "actions", label: "Action Plan", icon: "03", available: true },
   ];
@@ -1390,7 +1390,6 @@ function TabBar({ activeTab, onTabChange }) {
               display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
             }}
           >
-            <span style={{ fontSize: 10, opacity: active ? 0.7 : 0.4, fontWeight: 600 }}>{tab.icon}</span>
             <span>{tab.label}</span>
           </button>
         );
