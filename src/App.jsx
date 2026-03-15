@@ -2535,7 +2535,6 @@ export default function RetirePlanner() {
                 >Save</button>
               </div>
             </div>
-            <TabBar activeTab={activeTab} onTabChange={handleTabChange} />
           </div>
         </div>
       </div>
@@ -2544,11 +2543,7 @@ export default function RetirePlanner() {
       <div style={{ maxWidth: 780, margin: "0 auto", padding: "0 24px", position: "relative", zIndex: 1 }}>
 
         {/* ═══════ HERO ═══════ */}
-        <div style={{ paddingTop: 175, paddingBottom: 0, position: "relative" }}>
-          {/* Paper circle — peeking from top right behind hero */}
-          <Reveal direction="left">
-            <SectionLabel text="UK Retirement Planner" />
-          </Reveal>
+        <div style={{ paddingTop: 130, paddingBottom: 0, position: "relative" }}>
           <Reveal delay={0.1} direction="left" blur>
             <h1 style={{
               fontSize: 42, fontWeight: 900, margin: "12px 0 0", letterSpacing: "-0.03em",
@@ -2559,10 +2554,11 @@ export default function RetirePlanner() {
             </h1>
           </Reveal>
           <Reveal delay={0.25} direction="left">
-            <p style={{ fontSize: 16, color: C.textSoft, lineHeight: 1.7, maxWidth: 520, marginTop: 14 }}>
+            <p style={{ fontSize: 16, color: C.textSoft, lineHeight: 1.7, maxWidth: 520, marginTop: 14, marginBottom: 20 }}>
               Set your retirement goals, enter your details, and see exactly where you stand — with a clear plan to get there.
             </p>
           </Reveal>
+          <TabBar activeTab={activeTab} onTabChange={handleTabChange} />
         </div>
         {activeTab === "plan" && (<>
 
