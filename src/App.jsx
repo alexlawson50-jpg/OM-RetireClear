@@ -1692,23 +1692,42 @@ function TaxBreakdownPanel({ preSPTax, postSPTax, isaIncome, statePensionAnnual,
             <div style={{ fontSize: 12, color: C.textDim, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 10 }}>
               Income Tax Bands
             </div>
-            <div style={{ display: "flex", borderRadius: 8, overflow: "hidden", height: 20, background: C.bg }}>
+            <div style={{ display: "flex", borderRadius: 8, overflow: "hidden", height: 28, background: C.bg }}>
               {tax.bands.map((band, i) => (
                 <div key={i} style={{
                   width: `${(band.amount / totalForBar) * 100}%`, height: "100%",
                   background: band.color,
                   minWidth: band.amount > 0 ? 2 : 0,
                   transition: "width 0.5s ease",
-                }} title={`${band.name}: ${formatCurrency(band.amount)} @ ${(band.rate * 100).toFixed(0)}% = ${formatCurrency(band.tax)} tax`} />
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontSize: 11, fontWeight: 600, color: "#ffffff",
+                }}>
+                  {(band.amount / totalForBar) > 0.12 ? `${(band.rate * 100).toFixed(0)}%` : ""}
+                </div>
               ))}
             </div>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 10 }}>
+
+            {/* Detailed band rows — matching original dark theme layout */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 0, marginTop: 12 }}>
               {tax.bands.map((band, i) => (
-                <div key={i} style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12 }}>
-                  <div style={{ width: 10, height: 10, borderRadius: 3, background: band.color }} />
-                  <span style={{ color: C.text }}>
-                    {band.name} ({(band.rate * 100).toFixed(0)}%): {formatCurrency(band.amount)} → {formatCurrency(band.tax)} tax
-                  </span>
+                <div key={i} style={{
+                  display: "flex", justifyContent: "space-between", alignItems: "center",
+                  padding: "12px 16px",
+                  borderLeft: `3px solid ${band.color}`,
+                  borderBottom: i < tax.bands.length - 1 ? `1px solid ${C.border}` : "none",
+                }}>
+                  <div>
+                    <div style={{ fontSize: 14, fontWeight: 600, color: C.text }}>{band.name}</div>
+                    <div style={{ fontSize: 12, color: C.textDim, marginTop: 2 }}>
+                      {formatCurrency(band.amount)} at {(band.rate * 100).toFixed(0)}%
+                    </div>
+                  </div>
+                  <div style={{
+                    fontSize: 16, fontWeight: 700,
+                    color: band.tax === 0 ? C.green : C.red,
+                  }}>
+                    {band.tax === 0 ? formatCurrency(0) : `−${formatCurrency(band.tax)}`}
+                  </div>
                 </div>
               ))}
             </div>
