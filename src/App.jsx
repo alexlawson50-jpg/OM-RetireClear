@@ -4607,7 +4607,19 @@ export default function RetirePlanner() {
                   Projected net income by retirement age (no other changes)
                 </div>
                 <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-                  {[57, 58, 60, 62, 65, 67].filter(a => a > Math.ceil(currentAge)).map(testAge => {
+                  {(() => {
+                    // Generate sequential ages centred around the user's retirement age
+                    const center = retireAge;
+                    const minAge = Math.max(Math.ceil(currentAge) + 1, 55);
+                    const ages = [];
+                    for (let a = center - 3; a <= center + 3; a++) {
+                      if (a >= minAge && a <= 75) ages.push(a);
+                    }
+                    // Ensure we always have at least 5 ages shown
+                    while (ages.length < 5 && ages[0] > minAge) ages.unshift(ages[0] - 1);
+                    while (ages.length < 5 && ages[ages.length - 1] < 75) ages.push(ages[ages.length - 1] + 1);
+                    return ages;
+                  })().map(testAge => {
                     // Quick projection for this age
                     const testDC = calculateDCPension({
                       currentPotValue: parseFloat(dcPotValue) || 0,
